@@ -363,7 +363,7 @@ if ($action=="09") {
 
 // Trash update module
 if ($action=='10') {
-    $usertoken=|$_REQUEST['usertoken'];
+    $usertoken=$_REQUEST['usertoken'];
     $token=$_REQUEST['token'];
     if (checkToken($token, $db)==true) {
         if (trashDocument($token, $db)==true) {
@@ -517,8 +517,8 @@ if ($action=='13') {
 
 if ($action=="14") {
     $usertoken=$_REQUEST['usertoken'];
-    $title=$_REQUEST['title']
-    $content=$_REQUEST["content"];
+    $title=$_REQUEST['title'];
+    $content=$_REQUEST['content'];
     $date=$_REQUEST["date"];
     $time=$_REQUEST["time"];
     $datetime=$date. " " .$time;
@@ -531,7 +531,7 @@ if ($action=="14") {
             $array = json_encode($array);
             echo "$array";
             exit;
-        }else {
+    }else {
             $array = [
             'response' => "00",
             'message' => "something went wrong"
@@ -539,7 +539,7 @@ if ($action=="14") {
             $array = json_encode($array);
             echo "$array";
             exit;
-        }
+        
     }    
 }
 
@@ -558,7 +558,7 @@ if ($action=='15') {
                 $count=++$count;
                 $num=$result->num_rows;
                 $due_datetime=date("d-m-y H:i:s", $row['due_timestamp']);
-                $array[
+                $array=[
                     'usertoken'=>"".$row['usertoken']."",
                     'token'=>"".$row['token']."",
                     'title'=>"".$row['title']."",
@@ -576,7 +576,7 @@ if ($action=='15') {
             }
             echo "]";
         }else {
-            $array[
+            $array=[
                 'response'=>"00",
                 'message'=>"No result"
             ];
@@ -593,26 +593,26 @@ if ($action=='15') {
 if ($action=='17') {
     $usertoken=$_REQUEST['usertoken'];
     $token=$_REQUEST['token'];
-    $title=$_REQUEST['title']
+    $title=$_REQUEST['title'];
     $content=$_REQUEST["content"];
     $date=$_REQUEST["date"];
     $time=$_REQUEST["time"];
     $datetime=$date. " " .$time;
     if (updatereminder($usertoken, $title, $content, $datetime, $timestamp, $db)==true) {
-        $array[
+        $array=[
             'response' => "17",
             'message' => "Updated",
             'token'=>"".$_SESSION['token'].""
-        ]
+        ];
         $array=json_encode($array);
         echo "$array";
         exit;
     }else {
-        $array[
+        $array=[
             'response' => "00",
             'message' => "something went wrong",
             'token'=>"".$_SESSION['token']."" 
-        ]
+        ];
         $array=json_encode($array);
         echo "$array";
         exit;
